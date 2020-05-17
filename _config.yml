@@ -2,12 +2,12 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: https://lockdown.today
-title: LOCKDOWN.TODAY
+url: https://solitude-ethereum.xyz
+title: SOLITUDE
 email: gaetano.mondelli@gmail.com
 #author: Gaetano Mondelli
 description: > # "Write an awesome description for your new site here. 
-  Let's help people who want to self-quarantine
+  Development framework for Ethereum
 copyright: 'Made with ❤️ in the Shoreditch Triangle, London ' #'Copyright &copy; 2020 PLED. All Rights Reserved.'
 # credits: GaetanoMondelli
 #'Credits: Landing Page is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com/">Start Bootstrap</a>.'
