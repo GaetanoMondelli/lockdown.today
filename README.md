@@ -1,2 +1,2 @@
-# lockdown.today
-😷 Lockdown.today landing page 🦠
+# Solitude VsCode Debug
+😷 Solitude vscode debug landing page 🦠
