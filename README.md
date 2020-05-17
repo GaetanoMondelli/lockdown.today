@@ -1,2 +1,2 @@
 # Solitude VsCode Debug
-😷 Solitude vscode debug landing page 🦠
+Solitude vscode debug landing page
