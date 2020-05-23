@@ -6,28 +6,8 @@ url: https://solitude-ethereum.xyz
 title: SOLITUDE
 email: gaetano.mondelli@gmail.com
 #author: Gaetano Mondelli
-description: > # "Write an awesome description for your new site here. 
-  Development framework for Ethereum
-copyright: 'Made with ❤️ in the Shoreditch Triangle, London ' #'Copyright &copy; 2020 PLED. All Rights Reserved.'
-# credits: GaetanoMondelli
-#'Credits: Landing Page is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com/">Start Bootstrap</a>.'
+description: Development framework for Ethereum
+copyright: 'Made with ❤️ in the Shoreditch Triangle, London ' 
 
-# ----------------------- #
-#    Jekyll & Plugins     #
-# ----------------------- #
-
-# Build settings
 markdown: kramdown
 permalink: pretty
-
-# ----------------------- #
-#   3rd Party Settings    #
-# ----------------------- #
-
-# social:
-#   - title: twitter
-#     url: https://twitter.com/SBootstrap
-#   - title: github
-#     url: https://github.com/IronSummitMedia/startbootstrap
-#   - title: linkedin
-#     url: 

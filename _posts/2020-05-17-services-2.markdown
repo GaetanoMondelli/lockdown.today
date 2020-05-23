@@ -1,0 +1,60 @@
+---
+layout: default
+type: large
+title: none
+description: |
+---
+---
+
+<div class="row">
+    <div class="col-lg-5 col-sm-6">
+    A solitude.yaml configuration file looks as simple as this 👀
+    <br>
+    <br>
+    Projects variables are related with a specific project and their values
+    should be unique to the project
+    <br>
+    <ul>
+    <li> 
+    🆕 <i>Name</i> is the name of your project 
+    </li>
+    <li> 
+    📁 <i>SourceDir</i> is where your contracts source code is stored
+    </li>
+    <li> 
+    🗄️ <i>ObjectDir</i> is where your compiled contracts source code are going to be stored
+    </li>
+    </ul>
+    Tools variables are about the tools you need to be up and running.
+    <br>
+    ⚙️ <i> Tools.Required</i> defines the tools you need to be installed in <i> 📁 Tools.Directory</i>. Running  <span style="color:brown"> solitude install</span> you can make sure the required tools are installed in the tool directory. Different solitude projects can share the same tool directory.
+    <br>
+
+   </div>
+        <div class="col-lg-5 col-sm-6">
+    {{ "
+        _
+        Project.Name: MyProject
+        Project.SourceDir: ./contracts
+        Project.ObjectDir: ./build/contracts
+        Tools.Directory: ~/.solitude-dev
+        Tools.Solc.Version: 0.5.2
+        Tools.GanacheCli.Version: 6.4.1
+        Tools.EthLint.Version: 1.2.4
+        Tools.Required:
+            - Solc
+            - GanacheCli
+        Server.Port: 8545
+        Server.Host: 127.0.0.1
+        Server.GasPrice: 20000000000
+        Server.GasLimit: 6721975
+        Client.Endpoint: http://127.0.0.1:8545
+        Client.GasPrice: 20000000000
+        Client.GasLimit: 6721975
+        _
+
+    
+    "| markdownify }}
+    
+   </div>
+</div>

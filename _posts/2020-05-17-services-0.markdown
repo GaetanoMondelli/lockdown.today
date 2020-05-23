@@ -1,0 +1,10 @@
+---
+layout: default
+img: img/services/foreveralone.jpg
+title: Useful links
+description: |
+---
+- [Solitude Github repo 💻](https://github.com/incerto-crypto/solitude)
+- [Solitude examples for getting started 📝](https://github.com/incerto-crypto/solitude-examples)
+- [Solitude repo for the vscode plugin 🖥️](https://github.com/GaetanoMondelli/vscode-solitude-debug)
+- [Solitude Docs 📘 ](https://solitude.readthedocs.io/en/latest/)

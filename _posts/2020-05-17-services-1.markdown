@@ -1,11 +1,25 @@
 ---
 layout: default
-img: foreveralone.jpg
-# category: Services
-title: Useful links
+type: large
+title: Getting started with no pain
+
 description: |
 ---
-- [Solitude Github repo](https://github.com/incerto-crypto/solitude)
-- [Solitude examples for getting started](https://github.com/incerto-crypto/solitude-examples)
-- [Solitude repo for the vscode plugin](https://github.com/GaetanoMondelli/vscode-solitude-debug)
+---
 
+
+This is how to start a solitude project
+
+---
+
+```bash
+mkdir MyProject
+cd MyProject
+solitude init
+```
+---
+
+`solitude init` will create for you a solitude.yaml configuration file. 
+
+ For other available commands and help run `solitude --help` 
+ 
