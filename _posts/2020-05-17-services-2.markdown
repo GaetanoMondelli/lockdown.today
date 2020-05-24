@@ -27,11 +27,17 @@ description: |
     </ul>
     Tools variables are about the tools you need to be up and running.
     <br>
-    ⚙️ <i> Tools.Required</i> defines the tools you need to be installed in <i> 📁 Tools.Directory</i>. Running  <span style="color:brown"> solitude install</span> you can make sure the required tools are installed in the tool directory. Different solitude projects can share the same tool directory.
-    <br>
+    <ul>
+    <li>⚙️ <i> Required</i> defines the tools you need to have installed in <i> 📁 Directory</i>.
+    </li> 
+    <li>🔢 <i> Versions </i> of the required tools can be specified in the configuration  (e.g Solc.Version).
+    </li> 
 
-   </div>
-        <div class="col-lg-5 col-sm-6">
+    </ul>
+    Running  <span style="color:brown"> solitude install</span> you can make sure the required tools are installed in the tool directory. Different solitude projects can share the same tool directory.
+    </div>
+    <br>
+    <div class="col-lg-5 col-sm-6">
     {{ "
         _
         Project.Name: MyProject
@@ -57,4 +63,5 @@ description: |
     "| markdownify }}
     
    </div>
+   
 </div>

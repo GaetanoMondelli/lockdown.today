@@ -9,5 +9,7 @@ email: gaetano.mondelli@gmail.com
 description: Development framework for Ethereum
 copyright: 'Made with ❤️ in the Shoreditch Triangle, London ' 
 
-markdown: kramdown
+# markdown: kramdown
+markdown: redcarpet
 permalink: pretty
+highlighter: rouge
