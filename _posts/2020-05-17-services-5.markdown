@@ -1,0 +1,55 @@
+---
+layout: default
+type: large
+title: none
+
+description: |
+---
+<br/>
+#### Testing with Solitude 
+
+Using solitude you can test your contracts with [pytest](https://docs.pytest.org/). Solitude has already defined common context that can be used as test fixtures and stubs for triggering errors.  
+
+The following contract tracks the ownership of the i-th cat in the adopters array, by assigning the owner's address to the i-th position of the array.
+
+```
+pragma solidity ^0.5.2;
+
+contract CatShelter
+{
+    address[16] public adopters;
+    function adopt(uint256 i) public
+    {
+        require(i < adopters.length);
+        require(
+            adopters[i] == address(0),
+            "Cat has already been adopted");
+        adopters[i] = msg.sender;
+    }
+
+```
+We can easily test the adopt function with a python test. For each new test you would need to stop the current ethereum server node and run a clean one. However if tou set the `Testing.RunServer` to true in the `solitude.yaml` the solitude testing framework will set up a fresh new testing environment for each test.
+The server testing instances will be run in a port range specified in the config file, for example:  `Testing.PortRange: [8600, 8700]`
+
+
+```python
+import pytest
+from solitude.testing import sol
+
+def test_001_adopt_cat(sol, shelter, account0):
+   
+    CAT_INDEX = 3
+    with sol.account(sol.address(0)):
+        contract = sol.deploy("CatShelter", args=())
+        contract.transact_sync("adopt", CAT_INDEX)
+
+    assert sol.address(0) == contract.call("adopters", CAT_INDEX)
+
+```
+
+The sol object pushes a context configured with the default
+configuration in the `solitude.yaml`. In this test we push a context
+where the default account is set to be the 0-th from the available ones.
+You can define the available accounts and their balance for the server test in the 👥 `Solitude.Accounts` array in the `solitude.yaml`.
+We then deploy the contract and with the same account, notice we are within the same account conmtext, we make an `adopt` transaction for the third cat.
+Finally we check the selected address is the owener of the thrid cat.

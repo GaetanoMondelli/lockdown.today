@@ -6,21 +6,12 @@ title: none
 description: |
 ---
 <br/>
-#### Solitude server 
+#### Solitude server
 
-The Solitude client object allows to communicate with an ethereum node client.
-It is mainly used to produce contract objects and assist deployment on a blockchain instance.
-For each created (or referred) contract, it stores ABI and optionally the bytecode.
-
-Accounts are also managed by the client object by pushing a context.         Contexts can be nested and the account on the top of the context stack will
-be used.
-
-Deploy a contract is as easy as:
-
-```python
-with client.account(client.address(0)):
-    client.deploy("ContractName", args=())
-```
-
-In the `solitude.yaml` configuration you can specify how to reach the ethreum client. For example in a testing context you might want to connect [Ganache](https://github.com/incerto-crypto/solitude) runs on the localhost at the 8545 port)  
-You can also connect to a geth node however some of the clients configurations will not work.    
+Solitude clients allow you to perform some actions on a ethereum node.
+In the config file you can specify how the client can reach the ethreum node (acting as a server) in the `Client.Endpoint`. 
+You can also spin a testing ethereum server typing `solitude server`. It will run a Ganache node at the address specified in `Server.Host` and `Server.Port` of your `solitude.yaml`.
+If your client is pointing to an already running etehreum node you can omit this configuration section. In many cases we want the solitude client to point to the same address we have run the solitude server.
+<br/>
+<br/>
+<img class="img-responsive" src="img/services/server.jpg" alt="">

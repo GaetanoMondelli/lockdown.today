@@ -8,7 +8,7 @@ description: |
 <br/>
 #### Solitude client 
 
-The Solitude client object allows to communicate with an ethereum node client.
+The Solitude client object allows to communicate with an ethereum node client using web3 and rpc.
 It is mainly used to produce contract objects and assist deployment on a blockchain instance.
 For each created (or referred) contract, it stores ABI and optionally the bytecode.
 
@@ -23,4 +23,4 @@ with client.account(client.address(0)):
 ```
 
 In the `solitude.yaml` configuration you can specify how to reach the ethreum client. For example in a testing context you might want to connect [Ganache](https://github.com/incerto-crypto/solitude) runs on the localhost at the 8545 port)  
-You can also connect to a geth node however some of the clients configurations will not work.    
+You can also connect to a geth node however some of the clients configurations will not work.

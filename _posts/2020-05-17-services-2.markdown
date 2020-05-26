@@ -54,6 +54,9 @@ description: |
         Server.Host: 127.0.0.1
         Server.GasPrice: 20000000000
         Server.GasLimit: 6721975
+        Server.Accounts:
+            - 0xedf206987be3a32111f16c0807c9055e2b8b8fc84f42768015cb7f8471137890, 200 eth
+            - 0x0ca1573d73a070cfa5c48ddaf000b9480e94805f96a79ffa2d5bc6cc3288a92d, 100 eth
         Client.Endpoint: http://127.0.0.1:8545
         Client.GasPrice: 20000000000
         Client.GasLimit: 6721975
