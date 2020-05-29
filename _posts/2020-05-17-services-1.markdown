@@ -8,9 +8,26 @@ description: |
 ---
 
 
-This is how to start a solitude project
+### 💿 Install Solitude
+
+Let's install solitude from its repository.
+We recommend to use a [virtual environment](https://docs.python.org/3/library/venv.html)
+
+```bash
+python3 -m venv myenv
+source myenv/bin/activate
+pip install git+https://github.com/incerto-crypto/solitude.git
+```
+🪟 On Windows make sure you have installed:
+
+ - [Visual C++ Build Tools 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48159)
+ - [pwin32 in your vritual environement] (https://pypi.org/project/pywin32/)
 
 ---
+### 🆕 Create a new project
+Solitude comes with an handy CLI.
+
+Running `solitude init` in your project folder will create a default `solitude.yaml` configuration file.
 
 ```bash
 mkdir MyProject
@@ -19,7 +36,13 @@ solitude init
 ```
 ---
 
-`solitude init` will create for you a solitude.yaml configuration file. 
+💻 Other CLI commands are:
 
- For other available commands and help run `solitude --help` 
+- *install*: install all the required tools configured in the `solitude.yaml`
+- *compile*: compile all the smart contracts in the `Project.SourceDir` field of the `solitude.yaml`
+- *debug*: given a transactionHash starts an interactive gdb like debugger against the the ethereum node at `Client.Endpoint` in the `solitude.yaml` 
+- *trace*: given a valid transaction hash in the etehreum node reachable at  `Client.Endpoint` returns trace info (frames, stack, memory and storage)
+- *lint*: runs the solidity linter (for example EthLint Version `Tools.EthLint.Version`) against the contracts in `Project.SourceDir`.
+- *server*: runs a Ganache version: `Tools.GanacheCli.Version` at `Server.Host` : `Server.Port`
+
  
