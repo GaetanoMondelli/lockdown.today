@@ -10,9 +10,9 @@ description: |
 
 Using solitude you can test your contracts with [pytest](https://docs.pytest.org/). Solitude has already defined common context that can be used as test fixtures and stubs for triggering errors.  
 
-The following contract tracks the ownership of the i-th cat in the adopters array, by assigning the owner's address to the i-th position of the array.
+The following contract tracks the ownership of the i-th cat in the adopters array, by assigning the owner's address to the i-th position of the array. You can find all the code in the solitude example repository in the [solitude\_examples/e01\_cat\_shelter](https://github.com/incerto-crypto/solitude-examples/tree/master/examples/e01_cat_shelter) folder.
 
-```
+```javascript
 pragma solidity ^0.5.2;
 
 contract CatShelter
@@ -28,7 +28,8 @@ contract CatShelter
     }
 
 ```
-We can easily test the adopt function with a python test. For each new test you would need to stop the current ethereum server node and run a clean one. However if tou set the `Testing.RunServer` to true in the `solitude.yaml` the solitude testing framework will set up a fresh new testing environment for each test.
+We can easily test the adopt function with a python test. Normally for each new test we would need to stop the current ethereum server node and run a clean one. 
+Solitude can manage the spin and tear down of an new ethereum node for each test by setting the `Testing.RunServer` in the configuation.
 The server testing instances will be run in a port range specified in the config file, for example:  `Testing.PortRange: [8600, 8700]`
 
 
@@ -47,9 +48,25 @@ def test_001_adopt_cat(sol, shelter, account0):
 
 ```
 
-The sol object pushes a context configured with the default
-configuration in the `solitude.yaml`. In this test we push a context
-where the default account is set to be the 0-th from the available ones.
-You can define the available accounts and their balance for the server test in the 👥 `Solitude.Accounts` array in the `solitude.yaml`.
-We then deploy the contract and with the same account, notice we are within the same account conmtext, we make an `adopt` transaction for the third cat.
-Finally we check the selected address is the owener of the thrid cat.
+The sol object pushes a default context configured with the options in the `solitude.yaml`.
+On top of the default sol context we can push a more detailed context. 
+
+For example in this test we are defining the default account to the 0-th from the available ones in the Client.
+You can define the available accounts and their balance for the server test in the  `Solitude.Accounts` array in the config.
+
+
+Looking the `solitude.yaml` at the accounts section:
+
+```
+ Solitude.Accounts:
+    - 0xedf206987be3a32111f16c0807c9055e2b8b8fc84f42768015cb7f8471137890, 200 eth
+    - 0x0ca1573d73a070cfa5c48ddaf000b9480e94805f96a79ffa2d5bc6cc3288a92d, 100 eth
+```
+`with sol.account(sol.address(0)):` is setting `0xedf206987...1137890` as the account that deploys the `CatShelter` contract and calls after the `adopt` method. 
+
+Notice we are deploying and transacting within the same context, so make sure the selected account has got enough funds.
+
+Finally we check that our default address is the owner of the third cat.
+
+Congratulations you now own a cat on the blockchain 😼
+

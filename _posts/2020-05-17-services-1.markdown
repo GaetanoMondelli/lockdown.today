@@ -21,7 +21,7 @@ pip install git+https://github.com/incerto-crypto/solitude.git
 🪟 On Windows make sure you have installed:
 
  - [Visual C++ Build Tools 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48159)
- - [pwin32 in your vritual environement] (https://pypi.org/project/pywin32/)
+ - [pwin32 in your vritual environement](https://pypi.org/project/pywin32/)
 
 ---
 ### 🆕 Create a new project

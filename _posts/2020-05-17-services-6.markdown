@@ -1,0 +1,65 @@
+---
+layout: default
+type: large
+title: none
+
+description: |
+---
+<br/>
+#### Debug Tests in Solitude
+
+An handy way to debug your tests is using vscode. Installing the [python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) we can easily create a launch configuration for the pytest module. This is how the launch.json configuration looks like in the `.vscode` folder.
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Module",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "pythonPath": "/path/to/python/environment/where/solitude/installed/python3"
+        }
+    ]
+}
+```
+
+Opening the [solitude\_examples/e01\_cat\_shelter](https://github.com/incerto-crypto/solitude-examples/tree/master/examples/e01_cat_shelter) as workspace we can set a few breakpoints to get more familiar with the solitude framework.
+
+<img class="img-responsive" src="img/services/debug_pytest_solitude.JPG" alt="">
+
+In the Call stack panel we can see two threads one running our tests and one running the ganache node ( aka solitude server). 
+For each test, solitude restores the default state of the ethereum node as per the config file. 
+
+In the variable section we can see our variables and we can also inspect the `sol` object which manages the testing context.
+The sol object contains an instance of solitude server (class `solitude.server.eth_test_server.ETHTestServer`) which manages the server process
+and an instance of solitude client (class`solitude.client.eth_client.ETHClient`) which allows to invoke commands against the node.
+The solitude ETHClient class contains a [web3 client](https://web3py.readthedocs.io/en/) which points to the solitude server. we can use it in our test to get meaningful information. For example in the previous screen in the Watch panel we were able to see the balance of the `0xedf206987...1137890` account (i.e. account0) going down after the deplyoment and after the transaction.
+We can see it accessing the web3 client in the sol object: `sol.client.web3.eth.getBalance(account0)`. If wee need we can use these information in our tests as well.
+<br/>
+<br/>
+
+
+#### Debug Transactions in Solitude with sold
+
+In the last example we had a debugging session which had running an ethereum node server (ganache) and a pytest session.
+One interesting information we can get during the debuggin session is to get the transaction id (txhash) of a transaction and
+debug itself inside a smart contract. In the test we save in the transaction object the result of the transact_sync on the adopt contract method (line 24). Decondig the txhash member of the transaction object in the Watch panel by using `binascii.hexlify(transaction.txhash).decode()` we can start a solitude debuggin session on that specific transaction, in this case 'bceff320c06548233e9c4b1d464ac528124fd9ccf0a9425aa8f6f49798704170'.
+
+Let's open a terminal in the same folder and type `solitude debug 0xbceff320c06548233e9c4b1d464ac528124fd9ccf0a9425aa8f6f49798704170`. 
+Notice we have added the 0x at the beginning. 
+
+⏭️ The sold command line will be launch and we would be able to debug the transaction that has happened by using command line:
+
+- **backtrace**: prints the call stack and function parameter
+- **break** *function\_name* : set a breakpoint to the function *function\_name*
+- **continue**: continue execution until it hits a breakpoint or the end of the transaction instructions
+- **info locals**: prints the local memory variable and their value
+- **next** : goes to next instruction
+- **print**  *variable\_name*: prints a memory variable value with the name  *variable_name*
+<br/>
+<br/>
+<img class="img-responsive" src="img/services/sold.JPG" width="80%" alt="">
+
+For more on how to use the solitude debug you can have a look on [solitude\_examples/e04\_cat\_shelter](https://github.com/incerto-crypto/solitude-examples/tree/master/examples/e04_cat_shelter) 
