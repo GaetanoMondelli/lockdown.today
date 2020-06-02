@@ -6,8 +6,11 @@ title: none
 description: |
 ---
 <br/>
+
 #### Solitude server
 
+<!-- add example 2 and show how to start solitude server stop and use the vscode debugger with duplicate
+bug on tests spawn too many process from vscode i could see many txhash-->
 Solitude clients allow you to perform some actions on a ethereum node.
 In the config file you can specify how the client can reach the ethreum node (acting as a server) in the `Client.Endpoint`. 
 You can also spin a testing ethereum server typing `solitude server`. It will run a Ganache node at the address specified in `Server.Host` and `Server.Port` of your `solitude.yaml`.
@@ -15,3 +18,28 @@ If your client is pointing to an already running etehreum node you can omit this
 <br/>
 <br/>
 <img class="img-responsive" src="img/services/server.jpg" alt="">
+<br/>
+
+#### Dynamic creation of Solitude components
+
+You can dinamically create solitude servers and clients. In the  [solitude\_examples/e02\_cat\_rescue](https://github.com/incerto-crypto/solitude-examples/tree/master/examples/e02_cat_rescue), in the `main` function of the `cat_rescue.py` a solitude factory is instantiated from a config file. The factory then creates and starts a server and stores its endpoint.
+Then two clients are created and made them point to previously created server. They both import the same compiled contracts (`factory.get_objectlist()`) using the `update_contracts` method.
+
+
+The first client, acting as the account 0 from the `Server.Accounts` list, deploys the `CatShelter` contract on the server and runs the `rescue_cats` on a thread. 
+
+The `rescue_cats` method adds a new adoptable cat to the shelter every two seconds by making a `rescue` transaction. 
+
+The second client acting as the account 1 runs on thread the `adopt_cat` method which adds a filter to  `Rescued` events. 
+
+The `rescue` transaction in the smart contract before finishing emits a `Rescued` event with the id of the rescued cat.
+The second client gets the event, retrieves its id and adopts the id-th cat making the `adopt` transaction.
+
+```javascript
+    function rescue() public
+    {
+        require(msg.sender == owner);
+        adopters.push(address(0));
+        emit Rescued(adopters.length - 1);
+    }
+```

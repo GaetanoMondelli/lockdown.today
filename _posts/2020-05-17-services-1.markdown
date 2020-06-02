@@ -30,8 +30,8 @@ Solitude comes with an handy CLI.
 Running `solitude init` in your project folder will create a default `solitude.yaml` configuration file.
 
 ```bash
-mkdir MyProject
-cd MyProject
+mkdir -p path/to/MyProject
+cd path/to/MyProject
 solitude init
 ```
 ---
@@ -45,4 +45,35 @@ solitude init
 - *lint*: runs the solidity linter (for example EthLint Version `Tools.EthLint.Version`) against the contracts in `Project.SourceDir`.
 - *server*: runs a Ganache version: `Tools.GanacheCli.Version` at `Server.Host` : `Server.Port`
 
- 
+
+ ### 🆕 Run an existing project
+
+ Usually to run the first time a solitude project you need to `install` the required tools and `compile` the contracts from the `Project.SourceDir` into the 
+ `Project.ObjectDir` directory.  
+
+```bash
+cd path/to/MyProject
+solitude install
+solitude compile
+```
+---
+
+You need to install the required tools and to compile your contracts everytime you update them.
+For example the [solitude\_examples/e01\_cat\_shelter](https://github.com/incerto-crypto/solitude-examples/tree/master/examples/e01_cat_shelter) in the example respository defines the congifuration file as follows:
+
+```
+- Project.SourceDir: .
+- Project.ObjectDir: ./build
+- Tools.Directory: ~/.solitude-dev
+- Tools.Required:
+  - Solc
+  - GanacheCli
+- Tools.Solc.Version: 0.5.2
+- Tools.GanacheCli.Version: 6.4.1
+```
+
+Running `solitude compile` the tool will make sure Solc and GanacheCli of the desired versions are installed in `~/.solitude-dev`.
+
+Running `solitude install` it will compile all the contracts (`*.sol`) in current directory `.` (in this case only `CatShelter.sol`) creating the object json in the project sub folder `build`.  
+
+Finally the example shows hot to write tests in python  for checking the corretness of the contract. We explain how the solitude framework can be integrated with python testing tools in the Testing with Solitude section.

@@ -6,6 +6,8 @@ description: |
 ---
 ---
 
+#### Solitude.yaml 
+
 <div class="row">
     <div class="col-lg-5 col-sm-6">
     A solitude.yaml configuration file looks as simple as this 👀
