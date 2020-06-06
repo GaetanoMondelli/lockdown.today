@@ -64,6 +64,41 @@ Notice we have added the 0x at the beginning.
 
 For more on how to use the solitude debug you can have a look on [solitude\_examples/e04\_cat\_shelter](https://github.com/incerto-crypto/solitude-examples/tree/master/examples/e04_cat_shelter) 
 
-#### Debug Transactions in Solitude with sold
+#### Debug Transactions in Solitude with the VSCode Extension
+
+The solitude example 
 
 You can also debug a transaction using the [vscode solitude extension](https://marketplace.visualstudio.com/items?itemName=gmondelli.solitude-debug&ssr=false#overview).
+
+Let's install the `Solitude Debug` extension from the vscode marketplace and let's open the [solitude\_examples/e04\_cat\_shelter](https://github.com/incerto-crypto/solitude-examples/tree/master/examples/e04_cat_shelter) folder.
+Remember to run `solitude install` and `solitude compile` to make sure you have the needed tools and the contracts compiled in the right folder.
+The contracts folder contain `MyToken.sol` which is an instance of an [ERC20](https://eips.ethereum.org/EIPS/eip-20)
+
+```javascript
+pragma solidity ^0.5.2;
+
+import "./openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
+import "./openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
+import "./openzeppelin-solidity/contracts/token/ERC20/ERC20Mintable.sol";
+import "./openzeppelin-solidity/contracts/token/ERC20/ERC20Detailed.sol";
+
+contract MyToken is ERC20, ERC20Mintable, ERC20Detailed
+{
+
+  constructor(string memory _name, string memory _symbol, uint8 _decimals)
+    ERC20Detailed(_name, _symbol, _decimals)
+  public {
+
+  }
+}
+```
+
+From the python environment where we have installed solitude let's run the token_launch.py.
+From the config file it runs a server and a client.
+The client gets the reference of the compiled contracts `client.update_contracts(factory.get_objectlist())` and assign the address 0 to `owner` and the address 1 to `george`.
+The owner deployS the `MyToken` contract and `mint` 1000 tokens. The `mint` transaction method can be run only from the contract's owner, creates new tokens and assign it to the owner of the contracts.
+Then the owner tries to `transfer` 10000 tokens to george's account, however he has only 1000 and the transaction fails.
+
+
+
+

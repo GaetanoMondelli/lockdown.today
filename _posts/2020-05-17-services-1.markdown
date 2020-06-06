@@ -10,8 +10,7 @@ description: |
 
 ### 💿 Install Solitude
 
-Let's install solitude from its repository.
-We recommend to use a [virtual environment](https://docs.python.org/3/library/venv.html)
+We recommend to use a [virtual environment](https://docs.python.org/3/library/venv.html) for installing solitude from its repository.
 
 ```bash
 python3 -m venv myenv
@@ -46,7 +45,7 @@ solitude init
 - *server*: runs a Ganache version: `Tools.GanacheCli.Version` at `Server.Host` : `Server.Port`
 
 
- ### 🆕 Run an existing project
+### 🆕 Run an existing project
 
  Usually to run the first time a solitude project you need to `install` the required tools and `compile` the contracts from the `Project.SourceDir` into the 
  `Project.ObjectDir` directory.  
