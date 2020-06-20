@@ -1,6 +1,6 @@
 ---
 layout: default
-img: img/services/foreveralone.jpg
+img: img/services/solitude2.png
 title: Useful links
 description: |
 ---

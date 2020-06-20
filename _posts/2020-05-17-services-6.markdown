@@ -93,12 +93,37 @@ contract MyToken is ERC20, ERC20Mintable, ERC20Detailed
 }
 ```
 
-From the python environment where we have installed solitude let's run the token_launch.py.
-From the config file it runs a server and a client.
-The client gets the reference of the compiled contracts `client.update_contracts(factory.get_objectlist())` and assign the address 0 to `owner` and the address 1 to `george`.
-The owner deployS the `MyToken` contract and `mint` 1000 tokens. The `mint` transaction method can be run only from the contract's owner, creates new tokens and assign it to the owner of the contracts.
-Then the owner tries to `transfer` 10000 tokens to george's account, however he has only 1000 and the transaction fails.
+From the python environment where we have installed solitude let's run the `token_launch.py`.
+The script loads a config file and uses its options to run a server and create a client.
+The client gets the reference of the compiled contracts `client by calling `update_contracts(factory.get_objectlist())`.
+The `Project.ObjectDir` field in the `solitude.yaml` represents the path where the compiled contracts are stored after the compilation. 
+The [repository instructions](https://github.com/incerto-crypto/solitude-examples/blob/master/examples/e04_erc20_debug/README.md) 
+asks the user to invoke `solitude compile` to make sure the compiled contracts are available for this script to get the references. 
 
+```python
+client = factory.create_client()
+client.update_contracts(factory.get_objectlist())
+owner = client.address(0)
+george = client.address(1)
+```
 
+The script assigns aliases to address. The address at position 0 in the config `Server.Accounts` array is assigned to the alias `owner` and the address at position 1 to `george`.
+The owner deploys the `MyToken` contract and `mint` 1000 tokens.
 
+```javascript
+function mint(address to, uint256 value) public onlyMinter returns (bool) {
+    _mint(to, value);
+    return true;
+}
+```
+Note that the `mint` transaction method is inherited from the `ERC20Mintable` interface and can be run only from the contract's owner because of the `onlyMinter` modifier. This method creates new tokens and assign it to the owner of the contracts.
+After minting and getting the token, the owner account tries to `transfer` 1000*10 tokens to `george`'s account, however he has only 1000 and the transaction fails.
 
+```python
+with client.account(owner):
+    token = client.deploy("MyToken", args=("Token", "TKN", 0))
+    txinfo = token.transact_sync("mint", owner, 1000)
+    print_txinfo(txinfo)
+    txinfo = token.transact_sync("transfer", george, 10000)
+    print_txinfo(txinfo)
+```
