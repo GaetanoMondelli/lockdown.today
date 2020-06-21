@@ -95,7 +95,8 @@ contract MyToken is ERC20, ERC20Mintable, ERC20Detailed
 
 From the python environment where we have installed solitude let's run the `token_launch.py`.
 The script loads a config file and uses its options to run a server and create a client.
-The client gets the reference of the compiled contracts `client by calling `update_contracts(factory.get_objectlist())`.
+The client gets the reference of the compiled contracts `client by calling `update_contracts(factory.get_objectlist())` .
+
 The `Project.ObjectDir` field in the `solitude.yaml` represents the path where the compiled contracts are stored after the compilation. 
 The [repository instructions](https://github.com/incerto-crypto/solitude-examples/blob/master/examples/e04_erc20_debug/README.md) 
 asks the user to invoke `solitude compile` to make sure the compiled contracts are available for this script to get the references. 
