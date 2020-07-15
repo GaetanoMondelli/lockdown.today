@@ -1,10 +1,27 @@
 ---
 layout: default
 img: img/services/solitude.png
-title: Useful links
+title: Welcome
 description: |
 ---
+<br>
+<br>
+NEWS
+
+
+🆕  **JOIN THE [SOLITUDE DEV COMMUNITY ON DISCORD](https://discord.gg/HUJw3QY) for:**
+
+ - propose new features
+ - report a bug
+ - get involved in the development
+
+<br>
+<br>    
+
+USEFUL LINKS
+
 - [Solitude Github repo 💻](https://github.com/incerto-crypto/solitude)
 - [Solitude tutorials 📝](https://github.com/incerto-crypto/solitude-examples)
 - [Solitude repo for the vscode plugin 🖥️](https://github.com/GaetanoMondelli/vscode-solitude-debug)
 - [Solitude Docs 📘 ](https://solitude.readthedocs.io/en/latest/)
+- [Solitude Discord Dev community 🧑🏽‍🤝‍🧑🏽]((https://discord.gg/HUJw3QY))
