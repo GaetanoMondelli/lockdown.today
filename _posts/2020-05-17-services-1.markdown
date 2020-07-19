@@ -27,7 +27,9 @@ pip install git+https://github.com/incerto-crypto/solitude.git@develop
  - [python virtualenvironment](https://pypi.org/project/virtualenv/)
  - [python3-dev](https://pypi.org/project/python-dev-tools/) sudo apt-get install python3-dev
  - [python wheel](https://pypi.org/project/wheel/) pip install wheel
+
 ---
+
 ### 🆕 Create a new project
 Solitude comes with an handy CLI.
 
