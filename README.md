@@ -4,3 +4,7 @@ Solitude vscode debug landing page
 Run it locally:
 
 `jekyll serve`
+
+Publishing:
+
+`git push`
